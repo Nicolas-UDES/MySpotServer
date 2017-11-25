@@ -22,7 +22,7 @@ public class TerritoryController {
 
 	@GetMapping("/getTerritories")
 	public @ResponseBody String getTerritories() throws Exception {
-		List<MySpotServer.Entites.Territory> result = TerritoryDAO.GetAllTerritories();
+		List<MySpotServer.Entites.Territory> result = TerritoryDAO.getAllTerritories();
 		return new ObjectMapper().writeValueAsString(result);
 	}
 }

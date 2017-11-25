@@ -37,7 +37,7 @@ public class Player {
     }
 
 
-    public Player(int id, String username, double blader, int urineStrength, LatLng lastPosition, Date lastSeen, double stomach, int level) {
+    public Player(int id, String username, double blader, double stomach, double urineStrength, int level, LatLng lastPosition, Date lastSeen) {
         this();
 
         this.id = id;
