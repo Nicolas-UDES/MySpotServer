@@ -1,6 +1,7 @@
 package MySpotServer.Utility;
 
 import MySpotServer.DAO.TerritoryDAO;
+import MySpotServer.Entites.Enumerable.TerritoryType;
 import MySpotServer.Entites.GmapGIS.Feature;
 import MySpotServer.Entites.GmapGIS.GmapGIS;
 import MySpotServer.Entites.LatLng;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class JsonToTerritories {
 
-	private static final String PATH = "D:\\Users\\Squirrel\\Documents\\Git\\MySpot\\app\\data\\GmapGIS.json";
+	private static final String PATH = "D:\\Users\\Squirrel\\Downloads\\UdeS.json";
 
 	public static void readJson() throws Exception {
 		GmapGIS gmapGIS = new ObjectMapper().readValue(new File(PATH), GmapGIS.class);
@@ -31,6 +32,16 @@ public class JsonToTerritories {
 
 		mergeTerritories(territories, 10.0);
 		cleanDuplicates(territories);
+		for(Territory territory : territories) {
+			territory.setCenter(computeCentroid(territory.getPositions()));
+			if(new LatLng(45.38012f, -71.92776f).isPointInPolygon(territory.getPositions())) {
+				territory.setTerritoryType(TerritoryType.Water);
+			}
+			else {
+				territory.setTerritoryType(TerritoryType.Gainable);
+			}
+		}
+
 		TerritoryDAO.AddTerritories(territories);
 	}
 
@@ -85,5 +96,22 @@ public class JsonToTerritories {
 				}
 			}
 		}
+	}
+
+	public static LatLng computeCentroid(List<LatLng> vertices)
+	{
+		float x = 0.f;
+		float y = 0.f;
+		int pointCount = vertices.size();
+		for (int i = 0; i < pointCount; i++){
+			final LatLng point = vertices.get(i);
+			x += point.getLatitude();
+			y += point.getLongitude();
+		}
+
+		x = x/pointCount;
+		y = y/pointCount;
+
+		return new LatLng(x, y);
 	}
 }
