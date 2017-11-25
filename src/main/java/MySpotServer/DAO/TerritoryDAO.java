@@ -17,6 +17,7 @@ public class TerritoryDAO {
 				for(LatLng latLng : territory.getPositions()) {
 					entityManager.persist(latLng);
 				}
+				entityManager.persist(territory.getCenter());
 				entityManager.persist(territory);
 			}
 			entityManager.getTransaction().commit();
