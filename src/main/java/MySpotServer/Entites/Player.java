@@ -1,5 +1,6 @@
 package MySpotServer.Entites;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,35 +9,45 @@ import java.util.List;
  * Created by Squirrel on 2017-11-24.
  */
 
+@Entity
 public class Player {
 
+    @Id
+    @GeneratedValue
     private int id;
     private String username;
+    private int level;
 
     private double blader;
-    private int urineStrength;
+    private double urineStrength;
+    private double stomach;
 
     private LatLng lastPosition;
     private Date lastSeen;
 
-    private List<Territory> controlledTerritories;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Drinking> drinks;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Marking> marks;
 
     public Player() {
-        this(new ArrayList<>());
+        drinks = new ArrayList<>();
+        marks = new ArrayList<>();
     }
 
-    public Player(List<Territory> controlledTerritories) {
-        this.controlledTerritories = controlledTerritories;
-    }
 
-    public Player(int id, String username, double blader, int urineStrength, LatLng lastPosition, Date lastSeen, List<Territory> controlledTerritories) {
-        this(controlledTerritories);
+    public Player(int id, String username, double blader, int urineStrength, LatLng lastPosition, Date lastSeen, double stomach, int level) {
+        this();
+
         this.id = id;
         this.username = username;
         this.blader = blader;
         this.urineStrength = urineStrength;
+        this.stomach = stomach;
         this.lastPosition = lastPosition;
         this.lastSeen = lastSeen;
+        this.level = level;
     }
 
     public int getId() {
@@ -63,11 +74,11 @@ public class Player {
         this.blader = blader;
     }
 
-    public int getUrineStrength() {
+    public double getUrineStrength() {
         return urineStrength;
     }
 
-    public void setUrineStrength(int urineStrength) {
+    public void setUrineStrength(double urineStrength) {
         this.urineStrength = urineStrength;
     }
 
@@ -87,11 +98,35 @@ public class Player {
         this.lastSeen = lastSeen;
     }
 
-    public List<Territory> getControlledTerritories() {
-        return controlledTerritories;
+    public double getStomach() {
+        return stomach;
     }
 
-    public void setControlledTerritories(List<Territory> controlledTerritories) {
-        this.controlledTerritories = controlledTerritories;
+    public void setStomach(double stomach) {
+        this.stomach = stomach;
+    }
+
+    public List<Drinking> getDrinks() {
+        return drinks;
+    }
+
+    public void setDrinks(List<Drinking> drinks) {
+        this.drinks = drinks;
+    }
+
+    public List<Marking> getMarks() {
+        return marks;
+    }
+
+    public void setMarks(List<Marking> marks) {
+        this.marks = marks;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }
