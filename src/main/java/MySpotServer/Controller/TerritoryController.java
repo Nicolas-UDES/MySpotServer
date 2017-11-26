@@ -7,11 +7,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
-@Controller("/territory")
+@Controller("territory")
+@RequestMapping("/territory/")
 public class TerritoryController {
 
 	@PostMapping("/readJson")
@@ -20,9 +22,9 @@ public class TerritoryController {
 		return "Done!";
 	}
 
-	@GetMapping("/getTerritories")
+	@GetMapping("/getAll")
 	public @ResponseBody String getTerritories() throws Exception {
-		List<MySpotServer.Entites.Territory> result = TerritoryDAO.GetAllTerritories();
+		List<MySpotServer.Entites.Territory> result = TerritoryDAO.getAllTerritories();
 		return new ObjectMapper().writeValueAsString(result);
 	}
 }

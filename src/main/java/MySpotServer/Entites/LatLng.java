@@ -15,14 +15,14 @@ public class LatLng implements Serializable {
 	@GeneratedValue
 	private long id;
 
-	public Float latitude;
+	private double latitude;
 
-	public Float longitude;
+	private double longitude;
 
 	public LatLng() {
 	}
 
-	public LatLng(Float latitude, Float longitude) {
+	public LatLng(double latitude, double longitude) {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
@@ -103,19 +103,19 @@ public class LatLng implements Serializable {
 		this.id = id;
 	}
 
-	public Float getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(Float latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
-	public Float getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Float longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 }

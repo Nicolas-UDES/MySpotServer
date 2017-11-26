@@ -10,7 +10,7 @@ import static MySpotServer.DAO.EntityManager.DATABASE;
 
 public class TerritoryDAO {
 
-	public static void AddTerritories(List<Territory> territories) throws Exception {
+	public static void addTerritories(List<Territory> territories) throws Exception {
 		try(EntityManager entityManager = new EntityManager(DATABASE)){
 			entityManager.getTransaction().begin();
 			for(Territory territory : territories) {
@@ -24,13 +24,13 @@ public class TerritoryDAO {
 		}
 	}
 
-	public static Territory GetTerritory(int id) throws Exception {
+	public static Territory getTerritory(int id) throws Exception {
 		try(EntityManager entityManager = new EntityManager(DATABASE)){
 			return entityManager.find(Territory.class, id);
 		}
 	}
 
-	public static List<Territory> GetAllTerritories() throws Exception {
+	public static List<Territory> getAllTerritories() throws Exception {
 		try(EntityManager entityManager = new EntityManager(DATABASE)){
 			TypedQuery<Territory> query = entityManager.createQuery("SELECT t FROM Territory t", Territory.class);
 			return query.getResultList();

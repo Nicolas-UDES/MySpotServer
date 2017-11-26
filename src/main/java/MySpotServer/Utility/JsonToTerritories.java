@@ -42,7 +42,7 @@ public class JsonToTerritories {
 			}
 		}
 
-		TerritoryDAO.AddTerritories(territories);
+		TerritoryDAO.addTerritories(territories);
 	}
 
 	/**
