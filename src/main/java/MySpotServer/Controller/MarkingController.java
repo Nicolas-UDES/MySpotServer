@@ -25,7 +25,7 @@ public class MarkingController {
 		Territory territory = TerritoryDAO.getTerritory(territoryId);
 
 		amount = Math.min(amount, player.getBlader());
-		Marking marking = new Marking(-1, new Date(), amount, player.getUrineStrength(), territory, player);
+		Marking marking = new Marking(0, new Date(), amount, player.getUrineStrength(), territory, player);
 		MarkingDAO.addMarking(marking);
 
 		return new ObjectMapper().writeValueAsString(marking);

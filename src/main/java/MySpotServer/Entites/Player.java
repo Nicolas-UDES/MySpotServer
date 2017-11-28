@@ -25,10 +25,10 @@ public class Player {
     private LatLng lastPosition;
     private Date lastSeen;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity=Drinking.class)
     private List<Drinking> drinks;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity=Marking.class)
     private List<Marking> marks;
 
     public Player() {
@@ -66,6 +66,14 @@ public class Player {
         this.username = username;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public double getBlader() {
         return blader;
     }
@@ -80,6 +88,14 @@ public class Player {
 
     public void setUrineStrength(double urineStrength) {
         this.urineStrength = urineStrength;
+    }
+
+    public double getStomach() {
+        return stomach;
+    }
+
+    public void setStomach(double stomach) {
+        this.stomach = stomach;
     }
 
     public LatLng getLastPosition() {
@@ -98,14 +114,6 @@ public class Player {
         this.lastSeen = lastSeen;
     }
 
-    public double getStomach() {
-        return stomach;
-    }
-
-    public void setStomach(double stomach) {
-        this.stomach = stomach;
-    }
-
     public List<Drinking> getDrinks() {
         return drinks;
     }
@@ -120,13 +128,5 @@ public class Player {
 
     public void setMarks(List<Marking> marks) {
         this.marks = marks;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 }

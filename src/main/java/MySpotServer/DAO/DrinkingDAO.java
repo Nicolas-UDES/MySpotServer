@@ -1,6 +1,11 @@
 package MySpotServer.DAO;
 
 import MySpotServer.Entites.Drinking;
+import MySpotServer.Entites.Territory;
+
+import javax.persistence.TypedQuery;
+
+import java.util.List;
 
 import static MySpotServer.DAO.EntityManager.DATABASE;
 
@@ -20,6 +25,14 @@ public class DrinkingDAO {
 	public static Drinking getDrinking(int id) throws Exception {
 		try(EntityManager entityManager = new EntityManager(DATABASE)){
 			return entityManager.find(Drinking.class, id);
+		}
+	}
+
+	public static List<Drinking> getNonEmptyDrinking(int playerId) throws Exception {
+		try(EntityManager entityManager = new EntityManager(DATABASE)){
+			TypedQuery<Drinking> query = entityManager.createQuery("SELECT d FROM Drinking d, Player p WHERE p.id = :playerId AND d MEMBER OF p.drinks AND d.emptied = false", Drinking.class);
+			query.setParameter("playerId", playerId);
+			return query.getResultList();
 		}
 	}
 }
