@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller("drinking")
 @RequestMapping("/drinking/")
@@ -26,9 +27,16 @@ public class DrinkingController {
 		Territory territory = TerritoryDAO.getTerritory(territoryId);
 
 		amount = Math.min(amount, Functions.levelToBladerSize(player.getLevel()) - player.getStomach());
-		Drinking drinking = new Drinking(-1, amount, new Date(), territory, player);
+		Drinking drinking = new Drinking(0, amount, new Date(), territory, player);
 		DrinkingDAO.addDrinking(drinking);
 
 		return new ObjectMapper().writeValueAsString(drinking);
+	}
+
+	@GetMapping("/getNonEmpty/{playerId}")
+	public @ResponseBody String getNonEmpty(@PathVariable("playerId") int playerId) throws Exception {
+
+		List<Drinking> drinkings = DrinkingDAO.getNonEmptyDrinking(playerId);
+		return new ObjectMapper().writeValueAsString(drinkings);
 	}
 }

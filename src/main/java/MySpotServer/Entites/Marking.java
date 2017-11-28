@@ -15,12 +15,16 @@ public class Marking implements Serializable {
 
 	private double amount;
 
+	private double used;
+
+	private boolean emptied;
+
 	private double strength;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Territory location;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Player player;
 
 	public Marking() {
@@ -33,6 +37,9 @@ public class Marking implements Serializable {
 		this.strength = strength;
 		this.location = location;
 		this.player = player;
+
+		used = 0.0;
+		emptied = false;
 	}
 
 	public int getId() {
@@ -81,5 +88,21 @@ public class Marking implements Serializable {
 
 	public void setPlayer(Player player) {
 		this.player = player;
+	}
+
+	public double getUsed() {
+		return used;
+	}
+
+	public void setUsed(double used) {
+		this.used = used;
+	}
+
+	public boolean isEmptied() {
+		return emptied;
+	}
+
+	public void setEmptied(boolean emptied) {
+		this.emptied = emptied;
 	}
 }
