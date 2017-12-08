@@ -1,10 +1,8 @@
 package MySpotServer.DAO;
 
-import MySpotServer.Entites.LatLng;
-import MySpotServer.Entites.Territory;
-
 import javax.persistence.TypedQuery;
 import java.util.List;
+import MySpotLibrary.Entites.*;
 
 import static MySpotServer.DAO.EntityManager.DATABASE;
 

@@ -1,9 +1,7 @@
 package MySpotServer.DAO;
 
-import MySpotServer.Entites.Marking;
-import MySpotServer.Entites.Player;
-
 import static MySpotServer.DAO.EntityManager.DATABASE;
+import MySpotLibrary.Entites.*;
 
 public class MarkingDAO {
 

@@ -1,10 +1,5 @@
 package MySpotServer.Utility;
 
-import MySpotServer.Entites.Drinking;
-
-import java.util.Date;
-import java.util.List;
-
 /**
  * Created by Squirrel on 2017-11-25.
  */

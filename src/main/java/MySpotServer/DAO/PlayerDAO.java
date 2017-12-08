@@ -1,11 +1,7 @@
 package MySpotServer.DAO;
 
-import MySpotServer.Entites.Drinking;
-import MySpotServer.Entites.LatLng;
-import MySpotServer.Entites.Player;
-import MySpotServer.Entites.Territory;
-
 import static MySpotServer.DAO.EntityManager.DATABASE;
+import MySpotLibrary.Entites.*;
 
 public class PlayerDAO {
 

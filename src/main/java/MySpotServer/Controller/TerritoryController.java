@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import MySpotLibrary.Entites.*;
 import java.util.List;
 
 @Controller("territory")
@@ -24,7 +24,7 @@ public class TerritoryController {
 
 	@GetMapping("/getAll")
 	public @ResponseBody String getTerritories() throws Exception {
-		List<MySpotServer.Entites.Territory> result = TerritoryDAO.getAllTerritories();
+		List<Territory> result = TerritoryDAO.getAllTerritories();
 		return new ObjectMapper().writeValueAsString(result);
 	}
 }

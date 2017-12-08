@@ -1,11 +1,9 @@
 package MySpotServer.Controller;
 
+import MySpotLibrary.Entites.*;
 import MySpotServer.DAO.MarkingDAO;
 import MySpotServer.DAO.PlayerDAO;
 import MySpotServer.DAO.TerritoryDAO;
-import MySpotServer.Entites.Marking;
-import MySpotServer.Entites.Player;
-import MySpotServer.Entites.Territory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

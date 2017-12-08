@@ -1,16 +1,18 @@
 package MySpotServer.Utility;
 
+import MySpotLibrary.Entites.*;
+import MySpotLibrary.Entites.Enumerable.TerritoryType;
 import MySpotServer.DAO.TerritoryDAO;
-import MySpotServer.Entites.Enumerable.TerritoryType;
 import MySpotServer.Entites.GmapGIS.Feature;
 import MySpotServer.Entites.GmapGIS.GmapGIS;
-import MySpotServer.Entites.LatLng;
-import MySpotServer.Entites.Territory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import static MySpotLibrary.BLL.LatLngBLL.distance;
+import static MySpotLibrary.BLL.LatLngBLL.isPointInPolygon;
 
 public class JsonToTerritories {
 
@@ -34,7 +36,7 @@ public class JsonToTerritories {
 		cleanDuplicates(territories);
 		for(Territory territory : territories) {
 			territory.setCenter(computeCentroid(territory.getPositions()));
-			if(new LatLng(45.38012f, -71.92776f).isPointInPolygon(territory.getPositions())) {
+			if(isPointInPolygon(new LatLng(45.38012f, -71.92776f), territory.getPositions())) {
 				territory.setTerritoryType(TerritoryType.Water);
 			}
 			else {
@@ -63,7 +65,7 @@ public class JsonToTerritories {
 					for (int b2 = 0; b2 < positions2.size(); b2++) {
 						LatLng latLng2 = positions2.get(b2);
 
-						if (latLng1.distance(latLng2) < minDistanceInMeter) {
+						if (distance(latLng1, latLng2) < minDistanceInMeter) {
 							latLng2.setLatitude(latLng1.getLatitude());
 							latLng2.setLongitude(latLng1.getLongitude());
 						}
