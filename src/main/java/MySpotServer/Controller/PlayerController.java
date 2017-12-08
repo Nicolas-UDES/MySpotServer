@@ -1,12 +1,11 @@
 package MySpotServer.Controller;
 
 import MySpotServer.DAO.PlayerDAO;
-import MySpotServer.Entites.Player;
 import MySpotServer.Utility.Functions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
+import MySpotLibrary.Entites.*;
 import java.util.Date;
 
 @Controller("player")

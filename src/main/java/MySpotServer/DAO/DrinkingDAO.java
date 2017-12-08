@@ -1,10 +1,7 @@
 package MySpotServer.DAO;
 
-import MySpotServer.Entites.Drinking;
-import MySpotServer.Entites.Territory;
-
 import javax.persistence.TypedQuery;
-
+import MySpotLibrary.Entites.*;
 import java.util.List;
 
 import static MySpotServer.DAO.EntityManager.DATABASE;
