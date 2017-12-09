@@ -12,8 +12,8 @@ public class TerritoryDAO {
 		try(EntityManager entityManager = new EntityManager(DATABASE)){
 			entityManager.getTransaction().begin();
 			for(Territory territory : territories) {
-				for(LatLng latLng : territory.getPositions()) {
-					entityManager.persist(latLng);
+				for(GeoPos geoPos : territory.getPositions()) {
+					entityManager.persist(geoPos);
 				}
 				entityManager.persist(territory.getCenter());
 				entityManager.persist(territory);
@@ -22,7 +22,7 @@ public class TerritoryDAO {
 		}
 	}
 
-	public static Territory getTerritory(int id) throws Exception {
+	public static Territory getTerritory(long id) throws Exception {
 		try(EntityManager entityManager = new EntityManager(DATABASE)){
 			return entityManager.find(Territory.class, id);
 		}

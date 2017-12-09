@@ -11,15 +11,16 @@ public class PlayerDAO {
 
 			entityManager.persist(player);
 
-			Drinking drink = new Drinking(0, player.getStomach(), player.getLastSeen(), null, player);
-			player.getDrinks().add(drink);
+			Drinking drink = new Drinking(0, player.getStomach(), player.getLastSeen(), entityManager.find(Territory.class, (long) 8), player);
 			entityManager.persist(drink);
+
+			player.getDrinks().add(drink);
 
 			entityManager.getTransaction().commit();
 		}
 	}
 
-	public static Player getPlayer(int id) throws Exception {
+	public static Player getPlayer(long id) throws Exception {
 		try(EntityManager entityManager = new EntityManager(DATABASE)){
 			return entityManager.find(Player.class, id);
 		}

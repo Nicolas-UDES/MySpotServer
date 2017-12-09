@@ -1,6 +1,7 @@
 package MySpotServer.Controller;
 
 import MySpotServer.DAO.PlayerDAO;
+import MySpotServer.DAO.TerritoryDAO;
 import MySpotServer.Utility.Functions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ public class PlayerController {
 	String createPlayer(@PathVariable("username") String username) throws Exception {
 		double bladerSize = Functions.levelToBladerSize(1);
 
-		Player player = new Player(0, username, 0.5 * bladerSize, 0.25 * bladerSize, 1, 1, null, new Date());
+		Player player = new Player(0, username, 0.5 * bladerSize, 0.25 * bladerSize, 1, 1, new GeoPos(0,0), new Date());
 		PlayerDAO.addPlayer(player);
 		player.getDrinks().get(0).setPlayer(null);
 
