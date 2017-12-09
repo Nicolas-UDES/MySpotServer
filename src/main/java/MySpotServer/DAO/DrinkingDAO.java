@@ -12,8 +12,11 @@ public class DrinkingDAO {
 		try(EntityManager entityManager = new EntityManager(DATABASE)){
 			entityManager.getTransaction().begin();
 
+			drinking.setLocation(entityManager.find(Territory.class, drinking.getLocationId()));
+			drinking.setPlayer(entityManager.find(Player.class, drinking.getPlayerId()));
 			entityManager.persist(drinking);
 			drinking.getPlayer().setStomach(drinking.getPlayer().getStomach() + drinking.getAmount());
+			//drinking.getPlayer().getDrinks().add(drinking);
 
 			entityManager.getTransaction().commit();
 		}
@@ -27,7 +30,7 @@ public class DrinkingDAO {
 
 	public static List<Drinking> getNonEmptyDrinking(int playerId) throws Exception {
 		try(EntityManager entityManager = new EntityManager(DATABASE)){
-			TypedQuery<Drinking> query = entityManager.createQuery("SELECT d FROM Drinking d, Player p WHERE p.id = :playerId AND d MEMBER OF p.drinks AND d.emptied = false", Drinking.class);
+			TypedQuery<Drinking> query = entityManager.createQuery("SELECT d FROM Drinking d WHERE d.playerId = :playerId AND d.emptied = false", Drinking.class);
 			query.setParameter("playerId", playerId);
 			return query.getResultList();
 		}
