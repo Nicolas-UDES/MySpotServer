@@ -1,5 +1,6 @@
 package MySpotServer.Controller;
 
+import MySpotServer.DAO.MarkingDAO;
 import MySpotServer.DAO.TerritoryDAO;
 
 import MySpotServer.Utility.JsonToTerritories;
@@ -25,6 +26,9 @@ public class TerritoryController {
 	@GetMapping("/getAll")
 	public @ResponseBody String getTerritories() throws Exception {
 		List<Territory> result = TerritoryDAO.getAllTerritories();
+		for (Territory territory :result){
+            territory.setMarkings(MarkingDAO.getMarkingsByTerritory(territory));
+        }
 		return new ObjectMapper().writeValueAsString(result);
 	}
 }
