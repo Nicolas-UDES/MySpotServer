@@ -32,10 +32,10 @@ public class MarkingDAO {
         }
     }
 
-    public static Marking getOneMarkingByTerritory(Territory territory) throws Exception {
+    public static Marking getMarkingByTerritory(long id) throws Exception {
         try (EntityManager em = new EntityManager(DATABASE)){
             Query q = em.createQuery("SELECT m FROM marking WHERE m.locationId = :locationId");
-            q.setParameter("locationId",territory.getId());
+            q.setParameter("locationId",id);
             List<Marking> result = q.getResultList();
             return result.get(result.size()-1);
         }
