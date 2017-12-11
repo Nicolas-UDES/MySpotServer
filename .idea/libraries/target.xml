@@ -1,10 +1,9 @@
 <component name="libraryTable">
   <library name="target">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../MySpotLibrary/target" />
+      <root url="jar://$PROJECT_DIR$/../../MySpotLibrary/MySpotLibrary/out/artifacts/MySpotLibrary_jar/MySpotLibrary.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
-    <jarDirectory url="file://$PROJECT_DIR$/../MySpotLibrary/target" recursive="false" />
   </library>
 </component>
