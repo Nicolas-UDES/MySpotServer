@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="MySpotLibrary-1.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../MySpotLibrary/target/MySpotLibrary-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../MySpotLibrary/MySpotLibrary/out/artifacts/MySpotLibrary_jar/MySpotLibrary.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
