@@ -1,6 +1,8 @@
 package MySpotServer.Controller;
 
+import MySpotLibrary.BLL.TerritoryBLL;
 import MySpotServer.DAO.MarkingDAO;
+import MySpotServer.DAO.PlayerDAO;
 import MySpotServer.DAO.TerritoryDAO;
 
 import MySpotServer.Utility.JsonToTerritories;
@@ -25,7 +27,7 @@ public class TerritoryController {
 		List<Territory> result = TerritoryDAO.getAllTerritories();
 		for (Territory territory :result){
 			territory.setOwnedById(TerritoryBLL.getOwner(territory));
-			territory.setOwnedBy(PlayerDAO.getPlayer(territory.getOwnerById()));
+			territory.setOwnedBy(PlayerDAO.getPlayer(territory.getOwnedById()));
             territory.setMarkings(MarkingDAO.getMarkingsByTerritory(territory));
         }
 		return new ObjectMapper().writeValueAsString(result);
