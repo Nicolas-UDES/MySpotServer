@@ -24,6 +24,8 @@ public class TerritoryController {
 	public @ResponseBody String getTerritories() throws Exception {
 		List<Territory> result = TerritoryDAO.getAllTerritories();
 		for (Territory territory :result){
+			territory.setOwnedById(TerritoryBLL.getOwner(territory));
+			territory.setOwnedBy(PlayerDAO.getPlayer(territory.getOwnerById()));
             territory.setMarkings(MarkingDAO.getMarkingsByTerritory(territory));
         }
 		return new ObjectMapper().writeValueAsString(result);
